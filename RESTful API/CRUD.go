@@ -41,6 +41,7 @@ func returnBookById(w http.ResponseWriter, r *http.Request) {
 
 func createNewBook(w http.ResponseWriter, r *http.Request) {
     var book Book
+    fmt.Println("Endpoint Hit: createNewBook")
     reqBody, _ := ioutil.ReadAll(r.Body)
     json.Unmarshal(reqBody, &book)
     Books = append(Books, book)
@@ -49,6 +50,7 @@ func createNewBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteBook(w http.ResponseWriter, r *http.Request) {
+    fmt.Println("Endpoint Hit: deleteBook")
     vars := mux.Vars(r)
     id := vars["bookId"]
     for index, book := range Books {
@@ -61,6 +63,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateBook(w http.ResponseWriter, r *http.Request) {
+    fmt.Println("Endpoint Hit: updateBook")
     var newbook Book
     reqBody, _ := ioutil.ReadAll(r.Body)
     json.Unmarshal(reqBody, &newbook)
